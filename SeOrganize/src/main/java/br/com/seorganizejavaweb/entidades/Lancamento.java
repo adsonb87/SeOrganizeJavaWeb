@@ -1,6 +1,6 @@
 package br.com.seorganizejavaweb.entidades;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Lancamento {
 	
@@ -10,8 +10,8 @@ public class Lancamento {
 	private String classeLan;
 	private double valorLan;
 	private String statusLan;
-	private String dataEmissao;
-	private String dataVencimento;
+	private Date dataEmissao;
+	private Date dataVencimento;
 	
 	public Lancamento() {
 	
@@ -65,19 +65,19 @@ public class Lancamento {
 		this.statusLan = statusLan;
 	}
 
-	public String getDataEmissao() {
+	public Date getDataEmissao() {
 		return dataEmissao;
 	}
 
-	public void setDataEmissao(String dataEmissao) {
+	public void setDataEmissao(Date dataEmissao) {
 		this.dataEmissao = dataEmissao;
 	}
 
-	public String getDataVencimento() {
+	public Date getDataVencimento() {
 		return dataVencimento;
 	}
 
-	public void setDataVencimento(String dataVencimento) {
+	public void setDataVencimento(Date dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
 	
