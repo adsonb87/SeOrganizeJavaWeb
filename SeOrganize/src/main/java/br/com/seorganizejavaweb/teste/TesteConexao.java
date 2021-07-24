@@ -1,6 +1,6 @@
 package br.com.seorganizejavaweb.teste;
 
-import br.com.seorganizejavaweb.jdbc.Conexao;
+import br.com.seorganizejavaweb.conexao.Conexao;
 
 public class TesteConexao {
 

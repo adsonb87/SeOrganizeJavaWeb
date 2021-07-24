@@ -1,21 +1,22 @@
 package br.com.seorganizejavaweb.teste;
 
-import br.com.seorganizejavaweb.entidades.Conta;
-import br.com.seorganizejavaweb.jdbc.ContaDAO;
+import br.com.seorganizejavaweb.conta.Conta;
+import br.com.seorganizejavaweb.conta.RepositorioContaJDBC;
+import br.com.seorganizejavaweb.fachada.Fachada;
 
 public class TesteContaDAO {
 
 	public static void main(String[] args) {
 		
-		buscarConta();
+		listarContasUsuario();
 	}
 	
 	private static void cadastraAlteraConta () {
-		ContaDAO contaDAO = new ContaDAO();
+		RepositorioContaJDBC contaDAO = new RepositorioContaJDBC();
 		Conta conta = new Conta();
 		
 		//conta.setIdConta(1);
-		conta.setIdUsuario(7);
+		//conta.setIdUsuario(7);
 		conta.setDescricao("Cartão de Crédito Nubank");
 		conta.setSaldoCredito(1000);
 		conta.setSaldoDebito(200);
@@ -31,25 +32,25 @@ public class TesteContaDAO {
 		
 		conta.setIdConta(3);
 		
-		ContaDAO contaDao = new ContaDAO();
+		RepositorioContaJDBC contaDao = new RepositorioContaJDBC();
 		
 		contaDao.excluirConta(conta);
 	}
 	
 	private static void listarContas() {
-		ContaDAO contaDao = new ContaDAO();
+		RepositorioContaJDBC contaDao = new RepositorioContaJDBC();
 		
 		System.out.println(contaDao.listarContas().toString());
 	}
 	
 	private static void listarContasUsuario() {
-		ContaDAO contaDao = new ContaDAO();
+		Fachada f = Fachada.getInstance();
 		
-		System.out.println(contaDao.listarContasUsuario(6).toString());
+		System.out.println(f.listarContasUsuario(6).toString());
 	}
 	
 	private static void buscarConta() {
-		ContaDAO contaDao = new ContaDAO();
+		RepositorioContaJDBC contaDao = new RepositorioContaJDBC();
 		
 		System.out.println(contaDao.buscarConta(4).toString());
 	}

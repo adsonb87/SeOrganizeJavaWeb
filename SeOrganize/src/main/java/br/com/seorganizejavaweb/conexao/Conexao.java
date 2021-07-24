@@ -1,4 +1,4 @@
-package br.com.seorganizejavaweb.jdbc;
+package br.com.seorganizejavaweb.conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

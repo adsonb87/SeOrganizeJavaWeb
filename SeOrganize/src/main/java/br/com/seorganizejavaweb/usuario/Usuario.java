@@ -1,4 +1,4 @@
-package br.com.seorganizejavaweb.entidades;
+package br.com.seorganizejavaweb.usuario;
 
 public class Usuario {
 	

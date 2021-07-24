@@ -1,4 +1,4 @@
-package br.com.seorganizejavaweb.jdbc;
+package br.com.seorganizejavaweb.usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 import com.oracle.wls.shaded.org.apache.regexp.RE;
 
-import br.com.seorganizejavaweb.entidades.Usuario;
+import br.com.seorganizejavaweb.conexao.Conexao;
 
-public class UsuarioDAO {
+public class RepositorioUsuarioJDBC implements IRepositorioUsuario{
 	 
 	private Connection con = Conexao.getConnection();
 	

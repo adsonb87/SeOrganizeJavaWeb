@@ -2,8 +2,9 @@ package br.com.seorganizejavaweb.teste;
 
 import java.util.ArrayList;
 
-import br.com.seorganizejavaweb.entidades.Usuario;
-import br.com.seorganizejavaweb.jdbc.UsuarioDAO;
+import br.com.seorganizejavaweb.usuario.Usuario;
+import br.com.seorganizejavaweb.fachada.Fachada;
+import br.com.seorganizejavaweb.usuario.RepositorioUsuarioJDBC;
 
 public class TesteUsuarioDAO {
 
@@ -16,7 +17,7 @@ public class TesteUsuarioDAO {
 	private static void testeListar() {
 		ArrayList<Usuario> listaUsuarios;
 		
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		RepositorioUsuarioJDBC usuarioDAO = new RepositorioUsuarioJDBC();
 		
 		listaUsuarios = usuarioDAO.listarUsuario();
 		
@@ -34,7 +35,7 @@ public class TesteUsuarioDAO {
 		user.setLogin("jegsouza");
 		user.setSenha("1234");
 		
-		UsuarioDAO userDAO = new UsuarioDAO();
+		RepositorioUsuarioJDBC userDAO = new RepositorioUsuarioJDBC();
 		
 		userDAO.salvarUsuario(user);
 	}
@@ -47,7 +48,7 @@ public class TesteUsuarioDAO {
 		user.setLogin("jegsouza");
 		user.setSenha("1234");
 		
-		UsuarioDAO userDAO = new UsuarioDAO();
+		RepositorioUsuarioJDBC userDAO = new RepositorioUsuarioJDBC();
 		
 		userDAO.salvarUsuario(user);
 	}
@@ -56,13 +57,13 @@ public class TesteUsuarioDAO {
 		Usuario user = new Usuario();
 		user.setIdUsuario(5);
 		
-		UsuarioDAO userDAO = new UsuarioDAO();
+		RepositorioUsuarioJDBC userDAO = new RepositorioUsuarioJDBC();
 		
 		userDAO.excluirUsuario(user);
 	}
 	
 	private static void testeBuscarUsuarioId() {
-		UsuarioDAO userDAO = new UsuarioDAO();
+		RepositorioUsuarioJDBC userDAO = new RepositorioUsuarioJDBC();
 		
 		Usuario user = userDAO.buscarUsuarioID(1);
 		
@@ -70,7 +71,7 @@ public class TesteUsuarioDAO {
 	}
 	
 	private static void testeBuscarUsuarioNome() {
-		UsuarioDAO userDAO = new UsuarioDAO();
+		RepositorioUsuarioJDBC userDAO = new RepositorioUsuarioJDBC();
 		
 		Usuario user = userDAO.buscarUsuarioNome("Jose Edson");
 		
@@ -82,7 +83,7 @@ public class TesteUsuarioDAO {
 		user.setLogin("jegsouza");
 		user.setSenha("1234");
 		
-		UsuarioDAO userDAO = new UsuarioDAO();	
+		RepositorioUsuarioJDBC userDAO = new RepositorioUsuarioJDBC();	
 	
 		System.out.println(userDAO.autenticarUsuario(user).toString());
 		
@@ -93,9 +94,9 @@ public class TesteUsuarioDAO {
 		user.setLogin("jegsouza");
 		user.setSenha("1234");
 		
-		UsuarioDAO userDAO = new UsuarioDAO();	
+		Fachada f = Fachada.getInstance();	
 	
-		System.out.println(userDAO.existeUsuario(user));
+		System.out.println(f.existeUsuario(user));
 		
 	}
 

@@ -1,4 +1,4 @@
-package br.com.seorganizejavaweb.jdbc;
+package br.com.seorganizejavaweb.conta;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,9 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import br.com.seorganizejavaweb.entidades.Conta;
+import br.com.seorganizejavaweb.conexao.Conexao;
+import br.com.seorganizejavaweb.usuario.Usuario;
 
-public class ContaDAO {
+public class RepositorioContaJDBC implements IRepositorioConta {
 
 	private Connection con = Conexao.getConnection();
 	
@@ -21,7 +22,7 @@ public class ContaDAO {
 		try {
 			PreparedStatement prStm = con.prepareStatement(sql);
 			
-			prStm.setInt(1, conta.getIdUsuario());
+			prStm.setInt(1, conta.getUsuario().getIdUsuario());
 			prStm.setDouble(2, conta.getSaldoCredito());
 			prStm.setDouble(3, conta.getSaldoDebito());
 			prStm.setDouble(4, conta.getSaldoDinheiro());
@@ -48,7 +49,7 @@ public class ContaDAO {
 		try {
 			PreparedStatement prStm = con.prepareStatement(sql);
 			
-			prStm.setInt(1, conta.getIdUsuario());
+			prStm.setInt(1, conta.getUsuario().getIdUsuario());
 			prStm.setDouble(2, conta.getSaldoCredito());
 			prStm.setDouble(3, conta.getSaldoDebito());
 			prStm.setDouble(4, conta.getSaldoDinheiro());
@@ -106,9 +107,11 @@ public class ContaDAO {
 			while(rs.next()) {
 				
 				Conta conta = new Conta();
+				Usuario usuario = new Usuario();
 				
 				conta.setIdConta(rs.getInt("idconta"));
-				conta.setIdUsuario(rs.getInt("idusuario"));
+				usuario.setIdUsuario(rs.getInt("idusuario"));
+				conta.setUsuario(usuario);
 				conta.setSaldoCredito(rs.getDouble("saldocredito"));
 				conta.setSaldoDebito(rs.getDouble("saldodebito"));
 				conta.setSaldoDinheiro(rs.getDouble("saldodinheiro"));
@@ -148,9 +151,11 @@ public class ContaDAO {
 				while(rs.next()) {
 					
 					Conta conta = new Conta();
+					Usuario usuario = new Usuario();
 					
 					conta.setIdConta(rs.getInt("idconta"));
-					conta.setIdUsuario(rs.getInt("idusuario"));
+					usuario.setIdUsuario(rs.getInt("idusuario"));
+					conta.setUsuario(usuario);
 					conta.setSaldoCredito(rs.getDouble("saldocredito"));
 					conta.setSaldoDebito(rs.getDouble("saldodebito"));
 					conta.setSaldoDinheiro(rs.getDouble("saldodinheiro"));
@@ -174,6 +179,7 @@ public class ContaDAO {
 	public Conta buscarConta(Integer id) {
 		
 		Conta conta = null;
+		Usuario usuario = null;
 		
 		String sql = "SELECT * FROM CONTA INNER JOIN USUARIO "
 				+ "ON CONTA.IDUSUARIO = USUARIO.IDUSUARIO "
@@ -190,9 +196,11 @@ public class ContaDAO {
 			if(rs.next()) {
 				
 				conta = new Conta();
+				usuario = new Usuario();
 				
 				conta.setIdConta(rs.getInt("idconta"));
-				conta.setIdUsuario(rs.getInt("idusuario"));
+				usuario.setIdUsuario(rs.getInt("idusuario"));
+				conta.setUsuario(usuario);
 				conta.setSaldoCredito(rs.getDouble("saldocredito"));
 				conta.setSaldoDebito(rs.getDouble("saldodebito"));
 				conta.setSaldoDinheiro(rs.getDouble("saldodinheiro"));

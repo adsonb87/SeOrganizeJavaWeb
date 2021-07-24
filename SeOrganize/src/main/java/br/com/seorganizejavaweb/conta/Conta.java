@@ -1,9 +1,11 @@
-package br.com.seorganizejavaweb.entidades;
+package br.com.seorganizejavaweb.conta;
+
+import br.com.seorganizejavaweb.usuario.Usuario;
 
 public class Conta {
 	
 	private Integer idConta;
-	private Integer idUsuario;
+	private Usuario usuario;
 	private double saldoCredito;
 	private double saldoDebito;
 	private double saldoDinheiro;
@@ -23,12 +25,12 @@ public class Conta {
 		this.idConta = idConta;
 	}
 
-	public Integer getIdUsuario() {
-		return idUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setIdUsuario(Integer idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public double getSaldoCredito() {
@@ -81,7 +83,7 @@ public class Conta {
 	
 	@Override
 	public String toString() {
-		return "Conta:\nIdConta: "+idConta+"\nidUsuario: "+idUsuario+"\nDescricao: "+descricao+
+		return "Conta:\nIdConta: "+idConta+"\nidUsuario: "+usuario.getIdUsuario()+"\nDescricao: "+descricao+
 				"\nSaldo Credito: "+saldoCredito+"\nSaldo Debito: "+saldoDebito+
 				"\nSaldo Dinheiro: "+saldoDinheiro+"\nTotal a Pagar: "+totalPagar+
 				"\nTotal a Receber: "+totalReceber;
