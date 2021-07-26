@@ -218,4 +218,64 @@ public class RepositorioContaJDBC implements IRepositorioConta {
 		
 		return conta;
 	}
+
+	@Override
+	public void calcularSaldos(Conta conta) {
+		
+		String sql = "UPDATE CONTA\r\n"
+				+ "SET SALDOCREDITO = (SELECT SUM(LANCAMENTO.VALOR)"
+				+ "					FROM CONTA"
+				+ "					INNER JOIN LANCAMENTO"
+				+ "							ON LANCAMENTO.idconta = CONTA.idconta"
+				+ "					WHERE LANCAMENTO.CLASSELAN = 'CREDITO'"
+				+ "					  AND CONTA.idconta = ?),"
+				+ "	SALDODEBITO  = (SELECT SUM(LANCAMENTO.VALOR)"
+				+ "					FROM CONTA"
+				+ "					INNER JOIN LANCAMENTO"
+				+ "							ON LANCAMENTO.idconta = CONTA.idconta"
+				+ "					WHERE LANCAMENTO.CLASSELAN = 'DEBITO'"
+				+ "					  AND CONTA.idconta = ?),"
+				+ "	SALDODINHEIRO = (SELECT SUM(LANCAMENTO.VALOR)"
+				+ "					 FROM CONTA"
+				+ "					 INNER JOIN LANCAMENTO"
+				+ "					  		 ON LANCAMENTO.idconta = CONTA.idconta"
+				+ "					 WHERE LANCAMENTO.CLASSELAN = 'DINHEIRO'"
+				+ "					   AND CONTA.idconta = ?),"
+				+ "	TOTALPAGAR = (SELECT SUM(LANCAMENTO.VALOR)"
+				+ "				  FROM CONTA"
+				+ "				  INNER JOIN LANCAMENTO"
+				+ "					   	  ON LANCAMENTO.idconta = CONTA.idconta"
+				+ "				  WHERE LANCAMENTO.TIPOLAN = 'PAGAR'"
+				+ "					AND CONTA.idconta = ?),"
+				+ "	TOTALRECEBER = (SELECT SUM(LANCAMENTO.VALOR)"
+				+ "					FROM CONTA"
+				+ "					INNER JOIN LANCAMENTO"
+				+ "							ON LANCAMENTO.idconta = CONTA.idconta"
+				+ "					WHERE LANCAMENTO.TIPOLAN = 'RECEBER'"
+				+ "					  AND CONTA.idconta = ?)"
+				+ "WHERE IDCONTA = ?";
+		
+		try {
+			PreparedStatement prStm = con.prepareStatement(sql);
+			
+			prStm.setInt(1, conta.getIdConta());
+			prStm.setInt(2, conta.getIdConta());
+			prStm.setInt(3, conta.getIdConta());
+			prStm.setInt(4, conta.getIdConta());
+			prStm.setInt(5, conta.getIdConta());
+			prStm.setInt(6, conta.getIdConta());
+			
+			prStm.execute();
+			prStm.close();
+			
+			System.out.println("Saldos alterados!");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	
 }

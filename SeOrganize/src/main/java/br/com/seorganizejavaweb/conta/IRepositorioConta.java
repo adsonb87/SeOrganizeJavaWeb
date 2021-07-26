@@ -11,9 +11,8 @@ public interface IRepositorioConta {
 	public void alterarConta (Conta conta);
 	public void salvarConta (Conta conta);
 	public void excluirConta (Conta conta);
-	public ArrayList<Conta> listarContas();
 	public ArrayList<Conta> listarContasUsuario(Integer id);
 	public Conta buscarConta(Integer id);
-
-	
+	public void calcularSaldos (Conta conta);
+		
 }

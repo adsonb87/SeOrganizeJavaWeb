@@ -14,19 +14,6 @@ public class TesteUsuarioDAO {
 		
 	}
 	
-	private static void testeListar() {
-		ArrayList<Usuario> listaUsuarios;
-		
-		RepositorioUsuarioJDBC usuarioDAO = new RepositorioUsuarioJDBC();
-		
-		listaUsuarios = usuarioDAO.listarUsuario();
-		
-		for(Usuario u: listaUsuarios) {
-			System.out.println(u.toString());
-		}
-		
-	}
-	
 	private static void testeCadastrar() {
 		Usuario user = new Usuario();
 		user.setNome("Jose Edson");
@@ -60,22 +47,6 @@ public class TesteUsuarioDAO {
 		RepositorioUsuarioJDBC userDAO = new RepositorioUsuarioJDBC();
 		
 		userDAO.excluirUsuario(user);
-	}
-	
-	private static void testeBuscarUsuarioId() {
-		RepositorioUsuarioJDBC userDAO = new RepositorioUsuarioJDBC();
-		
-		Usuario user = userDAO.buscarUsuarioID(1);
-		
-		System.out.println(user.toString());
-	}
-	
-	private static void testeBuscarUsuarioNome() {
-		RepositorioUsuarioJDBC userDAO = new RepositorioUsuarioJDBC();
-		
-		Usuario user = userDAO.buscarUsuarioNome("Jose Edson");
-		
-		System.out.println(user.toString());
 	}
 	
 	private static void testeAutenticarUsuario() {

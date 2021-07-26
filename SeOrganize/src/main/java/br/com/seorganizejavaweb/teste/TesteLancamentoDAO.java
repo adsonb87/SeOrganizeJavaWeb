@@ -12,7 +12,12 @@ public class TesteLancamentoDAO {
 
 	public static void main(String[] args) {
 		
-		salvarLancamento();
+		Conta conta = new Conta();
+		conta.setIdConta(2);
+		
+		Fachada f = Fachada.getInstance();
+		
+		f.calcularSaldos(conta);
 		
 	}
 	
@@ -24,7 +29,7 @@ public class TesteLancamentoDAO {
 		Conta conta = new Conta();
 		conta.setIdConta(1);
 		
-		lan.setClassifLan(ClassificacaoLancamento.CREDITO);
+		lan.setClassifLan(ClassificacaoLancamento.DINHEIRO);
 		
 		lan.setDataEmissao(java.sql.Date.valueOf("2021-07-24"));
 		lan.setDataVencimento(java.sql.Date.valueOf("2021-08-15"));
@@ -34,7 +39,7 @@ public class TesteLancamentoDAO {
 		lan.setStatusLan(StatusLancamento.PAGO);
 		lan.setTipoLan(TipoLancamento.PAGAR);
 		lan.setValorLan(500);
-		lan.setIdLan(2);
+
 		
 		f.salvarLancamento(lan);
 	}

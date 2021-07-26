@@ -25,16 +25,16 @@ public class ControladorConta {
 		repositorioConta.excluirConta(conta);
 	}
 	
-	public ArrayList<Conta> listarContas(){
-		return repositorioConta.listarContas();
-	}
-	
 	public ArrayList<Conta> listarContasUsuario(Integer id){
 		return repositorioConta.listarContasUsuario(id);
 	}
 	
 	public Conta buscarConta(Integer id) {
 		return repositorioConta.buscarConta(id);
+	}
+	
+	public void calcularSaldos (Conta conta) {
+		repositorioConta.calcularSaldos(conta);
 	}
 	
 }

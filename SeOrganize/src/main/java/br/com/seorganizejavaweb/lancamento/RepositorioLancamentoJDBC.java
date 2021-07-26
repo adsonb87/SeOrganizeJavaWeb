@@ -3,11 +3,14 @@ package br.com.seorganizejavaweb.lancamento;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import br.com.seorganizejavaweb.conexao.Conexao;
+import br.com.seorganizejavaweb.conta.Conta;
 
 public class RepositorioLancamentoJDBC implements IRepositorioLancamento {
 	
@@ -77,6 +80,91 @@ public class RepositorioLancamentoJDBC implements IRepositorioLancamento {
 		}else {
 			cadastrarLancamento(lancamento);
 		}
+	}
+
+	@Override
+	public void excluirLancamento(Lancamento lancamento) {
+		
+		String sql = "DELETE FROM LANCAMENTO WHERE IDLAN = ?";
+		
+		try {
+			PreparedStatement prStm = con.prepareStatement(sql);
+			
+			prStm.setInt(1, lancamento.getIdLan());
+			
+			prStm.execute();
+			prStm.close();
+			
+			System.out.println("Lancamento excluído!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void alterarStatusLancamento(Lancamento lancamento) {
+		
+		String sql = "UPDATE LANCAMENTO SET STATUSLAN = 'PAGO' WHERE IDLAN =?";
+		
+		try {
+			PreparedStatement prStm = con.prepareStatement(sql);
+			
+			prStm.setInt(1, lancamento.getIdLan());
+			
+			prStm.execute();
+			prStm.close();
+			
+			System.out.println("Lancamento pago!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public Lancamento buscarLancamento(Integer id) {
+
+		String sql = "SELECT * FROM LANCAMENTO WHERE IDLAN = ?";
+				
+		try {
+			PreparedStatement prStm = con.prepareStatement(sql);
+			prStm.setInt(1, id);
+			
+			ResultSet rs = prStm.executeQuery();
+			
+			if(rs.next()) {
+				Lancamento lancamento = new Lancamento();
+				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return null;
+	}
+
+	@Override
+	public ArrayList<Lancamento> listarLancamentosUsuario(Integer id) {
+		
+		String sql = "SELECT * FROM LANCAMENTO"
+				+ "INNER JOIN CONTA ON LANCAMENTO.idconta = CONTA.idconta"
+				+ "INNER JOIN USUARIO ON USUARIO.idusuario = CONTA.idusuario"
+				+ "WHERE USUARIO.idusuario = ?";
+		
+		return null;
+	}
+
+	@Override
+	public ArrayList<Lancamento> listarLacamentosConta(Integer id) {
+		
+		String sql = "SELECT * FROM LANCAMENTO'"
+				+ "INNER JOIN CONTA ON LANCAMENTO.idconta = CONTA.idconta"
+				+ "WHERE CONTA.IDCONTA = ?";
+		
+		return null;
 	}
 	
 }

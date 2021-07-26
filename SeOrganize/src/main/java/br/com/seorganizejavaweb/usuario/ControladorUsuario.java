@@ -26,18 +26,6 @@ public class ControladorUsuario {
 		repositorioUsuario.excluirUsuario(user);
 	}
 	
-	public ArrayList<Usuario> listarUsuario (){
-		return repositorioUsuario.listarUsuario();
-	}
-	
-	public Usuario buscarUsuarioID (Integer ID) {
-		return repositorioUsuario.buscarUsuarioID(ID);
-	}
-	
-	public Usuario buscarUsuarioNome (String nome) {
-		return repositorioUsuario.buscarUsuarioNome(nome);
-	}
-	
 	public Usuario autenticarUsuario (Usuario user) {
 		return repositorioUsuario.autenticarUsuario(user);
 	}

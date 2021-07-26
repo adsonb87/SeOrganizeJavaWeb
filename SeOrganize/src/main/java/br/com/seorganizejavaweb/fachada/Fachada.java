@@ -47,19 +47,7 @@ public class Fachada {
 	public void excluirUsuario (Usuario user) {
 		controladorUsuario.excluirUsuario(user);
 	}
-	
-	public ArrayList<Usuario> listarUsuario (){
-		return controladorUsuario.listarUsuario();
-	}
-	
-	public Usuario buscarUsuarioID (Integer ID) {
-		return controladorUsuario.buscarUsuarioID(ID);
-	}
-	
-	public Usuario buscarUsuarioNome (String nome) {
-		return controladorUsuario.buscarUsuarioNome(nome);
-	}
-	
+		
 	public Usuario autenticarUsuario (Usuario user) {
 		return controladorUsuario.autenticarUsuario(user);
 	}
@@ -85,10 +73,6 @@ public class Fachada {
 		controladorConta.excluirConta(conta);
 	}
 	
-	public ArrayList<Conta> listarContas(){
-		return controladorConta.listarContas();
-	}
-	
 	public ArrayList<Conta> listarContasUsuario(Integer id){
 		return controladorConta.listarContasUsuario(id);
 	}
@@ -96,6 +80,11 @@ public class Fachada {
 	public Conta buscarConta(Integer id) {
 		return controladorConta.buscarConta(id);
 	}
+	
+	public void calcularSaldos (Conta conta) {
+		controladorConta.calcularSaldos(conta);
+	}
+	
 	
 	//Metodos Lancamento
 	
