@@ -12,13 +12,8 @@ public class TesteLancamentoDAO {
 
 	public static void main(String[] args) {
 		
-		Conta conta = new Conta();
-		conta.setIdConta(2);
-		
-		Fachada f = Fachada.getInstance();
-		
-		f.calcularSaldos(conta);
-		
+		listarLancamentosConta();
+				
 	}
 	
 	private static void salvarLancamento () {
@@ -42,6 +37,18 @@ public class TesteLancamentoDAO {
 
 		
 		f.salvarLancamento(lan);
+	}
+	
+	private static void listarLancamentosUsuario() {
+		RepositorioLancamentoJDBC r = new RepositorioLancamentoJDBC();
+		
+		System.out.println(r.listarLancamentosUsuario(6).toString());
+	}
+	
+	private static void listarLancamentosConta() {
+		RepositorioLancamentoJDBC r = new RepositorioLancamentoJDBC();
+		
+		System.out.println(r.listarLacamentosConta(2).toString());
 	}
 
 }

@@ -1,12 +1,9 @@
 package br.com.seorganizejavaweb.lancamento;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import br.com.seorganizejavaweb.conexao.Conexao;
@@ -124,7 +121,10 @@ public class RepositorioLancamentoJDBC implements IRepositorioLancamento {
 	public Lancamento buscarLancamento(Integer id) {
 
 		String sql = "SELECT * FROM LANCAMENTO WHERE IDLAN = ?";
-				
+		
+		Lancamento lan = null;
+		Conta conta = null;
+		
 		try {
 			PreparedStatement prStm = con.prepareStatement(sql);
 			prStm.setInt(1, id);
@@ -132,39 +132,118 @@ public class RepositorioLancamentoJDBC implements IRepositorioLancamento {
 			ResultSet rs = prStm.executeQuery();
 			
 			if(rs.next()) {
-				Lancamento lancamento = new Lancamento();
+				lan = new Lancamento();
+				conta = new Conta();
 				
-				
+				lan.setClassifLan(ClassificacaoLancamento.valueOf(rs.getString("classelan")));
+				conta.setIdConta(rs.getInt("idconta"));
+				lan.setConta(conta);
+				lan.setDataEmissao(rs.getDate("dataemissao"));
+				lan.setDataVencimento(rs.getDate("datavencimento"));
+				lan.setDescricaoLancamento(rs.getString("descricao"));
+				lan.setIdLan(rs.getInt("idlan"));
+				lan.setStatusLan(StatusLancamento.valueOf(rs.getString("statuslan")));
+				lan.setTipoLan(TipoLancamento.valueOf(rs.getString("tipolan")));
+				lan.setValorLan(rs.getDouble("valor"));
 			}
+			
+			rs.close();
+			prStm.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-		return null;
+			
+		return lan;
 	}
 
 	@Override
 	public ArrayList<Lancamento> listarLancamentosUsuario(Integer id) {
 		
-		String sql = "SELECT * FROM LANCAMENTO"
+		/*String sql = "SELECT * FROM LANCAMENTO"
 				+ "INNER JOIN CONTA ON LANCAMENTO.idconta = CONTA.idconta"
 				+ "INNER JOIN USUARIO ON USUARIO.idusuario = CONTA.idusuario"
-				+ "WHERE USUARIO.idusuario = ?";
+				+ "WHERE USUARIO.idusuario = ?";*/
 		
-		return null;
+		String sql = "SELECT * FROM LANCAMENTO INNER JOIN CONTA ON LANCAMENTO.idconta = CONTA.idconta INNER JOIN USUARIO ON USUARIO.idusuario = CONTA.idusuario WHERE USUARIO.idusuario = ?";
+				
+		ArrayList<Lancamento> lancamentos = new ArrayList<Lancamento>();
+						
+		try {
+			PreparedStatement prStm = con.prepareStatement(sql);
+			prStm.setInt(1, id);
+			
+			ResultSet rs = prStm.executeQuery();
+			
+			while(rs.next()) {
+				Lancamento lan = new Lancamento();
+				Conta conta = new Conta();
+				
+				lan.setClassifLan(ClassificacaoLancamento.valueOf(rs.getString("classelan")));
+				conta.setIdConta(rs.getInt("idconta"));
+				lan.setConta(conta);
+				lan.setDataEmissao(rs.getDate("dataemissao"));
+				lan.setDataVencimento(rs.getDate("datavencimento"));
+				lan.setDescricaoLancamento(rs.getString("descricao"));
+				lan.setIdLan(rs.getInt("idlan"));
+				lan.setStatusLan(StatusLancamento.valueOf(rs.getString("statuslan")));
+				lan.setTipoLan(TipoLancamento.valueOf(rs.getString("tipolan")));
+				lan.setValorLan(rs.getDouble("valor"));
+				
+				lancamentos.add(lan);
+			}
+			
+			rs.close();
+			prStm.close();
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lancamentos;
 	}
 
 	@Override
 	public ArrayList<Lancamento> listarLacamentosConta(Integer id) {
 		
-		String sql = "SELECT * FROM LANCAMENTO'"
-				+ "INNER JOIN CONTA ON LANCAMENTO.idconta = CONTA.idconta"
-				+ "WHERE CONTA.IDCONTA = ?";
+		String sql = "SELECT * FROM LANCAMENTO INNER JOIN CONTA ON LANCAMENTO.idconta = CONTA.idconta WHERE CONTA.IDCONTA = ?";
 		
-		return null;
+		ArrayList<Lancamento> lancamentos = new ArrayList<Lancamento>();
+		
+		try {
+			PreparedStatement prStm = con.prepareStatement(sql);
+			prStm.setInt(1, id);
+			
+			ResultSet rs = prStm.executeQuery();
+			
+			while(rs.next()) {
+				Lancamento lan = new Lancamento();
+				Conta conta = new Conta();
+				
+				lan.setClassifLan(ClassificacaoLancamento.valueOf(rs.getString("classelan")));
+				conta.setIdConta(rs.getInt("idconta"));
+				lan.setConta(conta);
+				lan.setDataEmissao(rs.getDate("dataemissao"));
+				lan.setDataVencimento(rs.getDate("datavencimento"));
+				lan.setDescricaoLancamento(rs.getString("descricao"));
+				lan.setIdLan(rs.getInt("idlan"));
+				lan.setStatusLan(StatusLancamento.valueOf(rs.getString("statuslan")));
+				lan.setTipoLan(TipoLancamento.valueOf(rs.getString("tipolan")));
+				lan.setValorLan(rs.getDouble("valor"));
+				
+				lancamentos.add(lan);
+			}
+			
+			rs.close();
+			prStm.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		return lancamentos;
 	}
 	
 }
