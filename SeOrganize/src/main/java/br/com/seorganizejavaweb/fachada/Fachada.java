@@ -100,5 +100,25 @@ public class Fachada {
 		controladorLancamento.salvarLancamento(lancamento);		
 	}
 	
+	public void excluirLancamento (Lancamento lancamento) {
+		controladorLancamento.excluirLancamento(lancamento);
+	}
+	
+	public void alterarStatusLancamento (Lancamento lancamento) {
+		controladorLancamento.alterarStatusLancamento(lancamento);
+	}
+	
+	public Lancamento buscarLancamento (Integer id) {
+		return controladorLancamento.buscarLancamento(id);
+	}
+	
+	public ArrayList<Lancamento> listarLancamentosUsuario (Integer id){
+		return controladorLancamento.listarLancamentosUsuario(id);
+	}
+	
+	public ArrayList<Lancamento> listarLacamentosConta (Integer id){
+		return controladorLancamento.listarLacamentosConta(id);
+	}
+	
 	
 }
