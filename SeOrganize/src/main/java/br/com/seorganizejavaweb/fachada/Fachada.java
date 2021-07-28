@@ -56,6 +56,10 @@ public class Fachada {
 		return controladorUsuario.existeUsuario(user);
 	}
 	
+	public Usuario buscarUsuarioID (Integer id) {
+		return controladorUsuario.buscarUsuarioID(id);
+	}
+	
 	//Metodos Conta
 	
 	public void cadastrarConta (Conta conta) {

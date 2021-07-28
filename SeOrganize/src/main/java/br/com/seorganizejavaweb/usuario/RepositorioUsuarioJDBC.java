@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-
-import com.oracle.wls.shaded.org.apache.regexp.RE;
 
 import br.com.seorganizejavaweb.conexao.Conexao;
 
@@ -145,6 +142,37 @@ public class RepositorioUsuarioJDBC implements IRepositorioUsuario{
 		}
 							
 		return existe;
+	}
+
+	@Override
+	public Usuario buscarUsuarioID(Integer id) {
+		Usuario usuario = null;
+		
+		String sql = "SELECT * FROM USUARIO WHERE IDUSUARIO = ?";
+		
+		try {
+			PreparedStatement prStm = con.prepareStatement(sql);
+			prStm.setInt(1, id);
+			ResultSet rs = prStm.executeQuery();
+			
+			if(rs.next()) {
+				usuario = new Usuario();
+				usuario.setCpf(rs.getString("cpf"));
+				usuario.setEmail(rs.getString("email"));
+				usuario.setIdUsuario(rs.getInt("idusuario"));
+				usuario.setLogin(rs.getString("login"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setSenha(rs.getString("senha"));
+			}
+			
+			prStm.close();
+			rs.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+				
+		return usuario;
 	}
 	
 	

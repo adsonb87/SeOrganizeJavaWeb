@@ -10,17 +10,17 @@ public class TesteUsuarioDAO {
 
 	public static void main(String[] args) {
 		
-		testeExiste();
+		testeCadastrar();
 		
 	}
 	
 	private static void testeCadastrar() {
 		Usuario user = new Usuario();
-		user.setNome("Jose Edson");
-		user.setCpf("000.000.000-00");
-		user.setEmail("jegsouza@hotmail.com");
-		user.setLogin("jegsouza");
-		user.setSenha("1234");
+		user.setNome("Adson Barbosa de Souza");
+		user.setCpf("071.149.914-44");
+		user.setEmail("adsonb87@gmail.com");
+		user.setLogin("adsonb87");
+		user.setSenha("abs1410");
 		
 		RepositorioUsuarioJDBC userDAO = new RepositorioUsuarioJDBC();
 		

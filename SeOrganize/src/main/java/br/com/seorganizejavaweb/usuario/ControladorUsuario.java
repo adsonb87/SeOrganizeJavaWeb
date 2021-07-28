@@ -34,4 +34,8 @@ public class ControladorUsuario {
 		return repositorioUsuario.existeUsuario(user);
 	}
 	
+	public Usuario buscarUsuarioID (Integer id) {
+		return repositorioUsuario.buscarUsuarioID(id);
+	}
+	
 }

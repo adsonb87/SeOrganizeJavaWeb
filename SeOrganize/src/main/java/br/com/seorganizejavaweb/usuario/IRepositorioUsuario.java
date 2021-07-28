@@ -8,6 +8,7 @@ public interface IRepositorioUsuario {
 	public void alterarUsuario (Usuario user);
 	public void salvarUsuario (Usuario user);
 	public void excluirUsuario (Usuario user);
+	public Usuario buscarUsuarioID (Integer id);
 	public Usuario autenticarUsuario (Usuario user);
 	public boolean existeUsuario (Usuario user);
 	
