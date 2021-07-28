@@ -36,7 +36,7 @@ public class UsuarioController extends HttpServlet {
 		
 		Fachada fachada = Fachada.getInstance();
 		
-		if(acao != null && acao.equals("alterar")) {
+		if(acao != null && acao.equals("altUsuario")) {
 			
 			String id = request.getParameter("id");
 			Usuario user = new Usuario();
