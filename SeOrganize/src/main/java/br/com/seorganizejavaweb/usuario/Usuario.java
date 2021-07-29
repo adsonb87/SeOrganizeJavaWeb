@@ -13,6 +13,14 @@ public class Usuario {
 	public Usuario() {
 		
 	}
+	
+	public Usuario(String nome,	String cpf,	String email, String login,	String senha) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.login = login;
+		this.senha = senha;
+	}
 
 
 	public Integer getIdUsuario() {

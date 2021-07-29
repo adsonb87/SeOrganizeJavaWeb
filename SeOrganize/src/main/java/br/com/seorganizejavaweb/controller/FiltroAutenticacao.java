@@ -42,11 +42,14 @@ public class FiltroAutenticacao implements Filter {
 		
 		HttpSession sessao = httpServletRequest.getSession();
 		
-		if(sessao.getAttribute("usuarioAutenticado")!=null || url.lastIndexOf("login.html")>-1 || url.lastIndexOf("AutenticadorController.do")>-1) {
+		chain.doFilter(request, response);
+		
+		//if(sessao.getAttribute("usuarioAutenticado")!=null || url.lastIndexOf("login.html")>-1 || url.lastIndexOf("AutenticadorController.do")>-1 || url.lastIndexOf("frmusuariocad.jsp")>-1) {
+		/*if(url.lastIndexOf("cadUsuario")>-1 || url.lastIndexOf("login.html")>-1) {
 			chain.doFilter(request, response);
 		}else {
 			((HttpServletResponse) response).sendRedirect("login.html");
-		}
+		}*/
 	}
 
 	/**

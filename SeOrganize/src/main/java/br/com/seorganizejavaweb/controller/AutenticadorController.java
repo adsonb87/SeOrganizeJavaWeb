@@ -1,7 +1,9 @@
 package br.com.seorganizejavaweb.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import br.com.seorganizejavaweb.conta.Conta;
 import br.com.seorganizejavaweb.fachada.Fachada;
 import br.com.seorganizejavaweb.usuario.Usuario;
 import jakarta.servlet.ServletException;
@@ -58,6 +60,9 @@ public class AutenticadorController extends HttpServlet {
 			HttpSession sessao = request.getSession();
 			sessao.setAttribute("usuarioAutenticado", usuarioAutenticado);
 			
+			ArrayList<Conta> listaContas = fachada.listarContasUsuario(usuarioAutenticado.getIdUsuario());
+			request.setAttribute("lista", listaContas);
+						
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else {
 			response.sendRedirect("login.html");

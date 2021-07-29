@@ -44,9 +44,20 @@ public class UsuarioController extends HttpServlet {
 			
 			request.setAttribute("usuario", user);
 			
-			RequestDispatcher saida = request.getRequestDispatcher("frmusuario.jsp");
+			RequestDispatcher saida = request.getRequestDispatcher("frmusuariocjsp");
 			saida.forward(request, response);
 			
+		}
+		
+		if(acao !=null && acao.equals("cadUsuario")) {
+			
+			Usuario user = new Usuario("", "", "", "", "");
+			user.setIdUsuario(0);
+			
+			request.setAttribute("usuario", user);
+			
+			RequestDispatcher saida = request.getRequestDispatcher("frmusuariocad.jsp");
+			saida.forward(request, response);
 		}
 		
 	}
@@ -82,6 +93,7 @@ public class UsuarioController extends HttpServlet {
 		PrintWriter saida = response.getWriter();
 		saida.println("Cadastrado");
 		
+		response.sendRedirect("login.html");
 	}
 
 }

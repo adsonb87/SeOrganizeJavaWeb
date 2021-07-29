@@ -3,25 +3,29 @@ package br.com.seorganizejavaweb.teste;
 import br.com.seorganizejavaweb.conta.Conta;
 import br.com.seorganizejavaweb.conta.RepositorioContaJDBC;
 import br.com.seorganizejavaweb.fachada.Fachada;
+import br.com.seorganizejavaweb.usuario.Usuario;
 
 public class TesteContaDAO {
 
 	public static void main(String[] args) {
 		
-		listarContasUsuario();
+		cadastraAlteraConta();
 	}
 	
 	private static void cadastraAlteraConta () {
 		RepositorioContaJDBC contaDAO = new RepositorioContaJDBC();
 		Conta conta = new Conta();
 		
+		Usuario user = new Usuario();
+		user.setIdUsuario(1);
+		
 		//conta.setIdConta(1);
-		//conta.setIdUsuario(7);
-		conta.setDescricao("Cartão de Crédito Nubank");
-		conta.setSaldoCredito(1000);
-		conta.setSaldoDebito(200);
+		conta.setUsuario(user);
+		conta.setDescricao("Cartão de Crédito Itau");
+		conta.setSaldoCredito(2000);
+		conta.setSaldoDebito(100);
 		conta.setSaldoDinheiro(0);
-		conta.setTotalPagar(1200);
+		conta.setTotalPagar(2100);
 		conta.setTotalReceber(0);
 		
 		contaDAO.salvarConta(conta);
