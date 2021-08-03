@@ -44,7 +44,7 @@ public class UsuarioController extends HttpServlet {
 			
 			request.setAttribute("usuario", user);
 			
-			RequestDispatcher saida = request.getRequestDispatcher("frmusuariocjsp");
+			RequestDispatcher saida = request.getRequestDispatcher("frmusuario.jsp");
 			saida.forward(request, response);
 			
 		}

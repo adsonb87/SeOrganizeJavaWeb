@@ -21,7 +21,7 @@ public class TesteContaDAO {
 		
 		//conta.setIdConta(1);
 		conta.setUsuario(user);
-		conta.setDescricao("Cartão de Crédito Itau");
+		conta.setDescricao("Cartão de Crédito nubank");
 		conta.setSaldoCredito(2000);
 		conta.setSaldoDebito(100);
 		conta.setSaldoDinheiro(0);

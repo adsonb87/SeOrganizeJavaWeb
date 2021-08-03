@@ -10,7 +10,7 @@ public class TesteUsuarioDAO {
 
 	public static void main(String[] args) {
 		
-		testeCadastrar();
+		testeAlterar();
 		
 	}
 	

@@ -14,6 +14,9 @@
 	    		Atualizar cadastro</a>
 	  </li>
 	  <li class="nav-item">
+	    <a class="nav-link" href="frmconta.jsp">Cadastrar Conta</a>
+	  </li>
+	  <li class="nav-item">
 	    <a class="nav-link" href="AutenticadorController.do">Sair</a>
 	  </li>
 	</ul>	

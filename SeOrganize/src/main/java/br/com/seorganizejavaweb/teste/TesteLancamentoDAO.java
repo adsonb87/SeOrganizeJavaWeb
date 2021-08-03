@@ -12,7 +12,13 @@ public class TesteLancamentoDAO {
 
 	public static void main(String[] args) {
 		
-		listarLancamentosConta();
+		Fachada f = Fachada.getInstance();
+		Conta conta = new Conta();
+		conta.setIdConta(1);
+		Conta conta2 = new Conta();
+		conta2.setIdConta(2);
+		f.calcularSaldos(conta);
+		f.calcularSaldos(conta2);
 				
 	}
 	
@@ -22,21 +28,22 @@ public class TesteLancamentoDAO {
 		Fachada f = Fachada.getInstance();
 		
 		Conta conta = new Conta();
-		conta.setIdConta(1);
+		conta.setIdConta(2);
 		
-		lan.setClassifLan(ClassificacaoLancamento.DINHEIRO);
+		lan.setClassifLan(ClassificacaoLancamento.DEBITO);
 		
-		lan.setDataEmissao(java.sql.Date.valueOf("2021-07-24"));
-		lan.setDataVencimento(java.sql.Date.valueOf("2021-08-15"));
+		lan.setDataEmissao(java.sql.Date.valueOf("2021-08-03"));
+		lan.setDataVencimento(java.sql.Date.valueOf("2021-08-03"));
 		
-		lan.setDescricaoLancamento("Fatura");
+		lan.setDescricaoLancamento("Lanche");
 		lan.setConta(conta);
 		lan.setStatusLan(StatusLancamento.PAGO);
 		lan.setTipoLan(TipoLancamento.PAGAR);
-		lan.setValorLan(500);
+		lan.setValorLan(100);
 
 		
 		f.salvarLancamento(lan);
+		
 	}
 	
 	private static void listarLancamentosUsuario() {
